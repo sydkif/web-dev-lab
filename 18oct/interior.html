@@ -8,24 +8,30 @@
     <title>Interior</title>
 </head>
 
+<link rel="stylesheet" href="style.css">
 <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-
-<style>
-    html {
-        max-width: 38rem;
-        padding: 1rem;
-        margin: auto;
-        line-height: 1.2rem;
-        font-size: 20px;
-        font-family: "Roboto";
-    }
-</style>
 
 <body>
 
+    <img src="img/interior.jpg" alt="">
 
+    <div style="margin-top: 16px;">
+        <a class="button" href="house.html">Exit house</a>
+        <a class="button" id="watchTV" href="#">Watch TV</a>
+        <a class="button" id="playRadio" href="#"><strike>Open Radio</strike></a>
+        <a class="button" href="exterior.html">Go to backyard</a>
+    </div>
 
+    <!-- The Modal -->
+    <div id="myTv" class="modal">
+        <div class="modal-content">
+            <span class="close" hidden>&times;</span>
+            <iframe src="https://www.youtube.com/embed/JN2ADivoTcE?autoplay=0" height="100%" width="100%" title="Iframe Example"></iframe>
+        </div>
+    </div>
 
 </body>
 
 </html>
+
+<script src="script.js"></script>
