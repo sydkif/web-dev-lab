@@ -31,5 +31,4 @@ window.onclick = function (event) {
         tv.style.display = "none";
     if (event.target == radio)
         radio.style.display = "none";
-
 }
