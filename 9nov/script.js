@@ -43,6 +43,4 @@ function maxLengthCheck(object) {
         object.value = object.value.slice(0, object.maxLength)
 }
 
-
-
 window.onload = spinner;
