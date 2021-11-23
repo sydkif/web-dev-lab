@@ -19,12 +19,11 @@
         </div>
 
         <div class="header-nav">
-            <a href="product-list.html">FULL SIZED</a>
-            <a href="product-list.html">TENKEYLESS</a>
-            <a href="product-list.html">75% LAYOUT</a>
-            <a href="product-list.html">65% LAYOUT</a>
-            <a class="selected" href="product-list.html">60% LAYOUT</a>
-            <a href="product-list.html">40% LAYOUT</a>
+            <a href="product-list.html?type=full">FULL SIZED</a>
+            <a href="product-list.html?type=tkl">TENKEYLESS</a>
+            <a href="product-list.html?type=75">75% LAYOUT</a>
+            <a href="product-list.html?type=65">65% LAYOUT</a>
+            <a href="product-list.html?type=60">60% LAYOUT</a>
         </div>
 
         <div class="header-icon">
@@ -41,19 +40,19 @@
 
         <div class="row">
             <div class="column">
-                <img src="img/products/60/backlit-red-switch.jpg" alt="">
+                <img id="productImage" src="" alt="">
             </div>
 
             <div class="column">
                 <form>
-                    <h1>K12 RGB Backlit Red Switch Wireless Mechanical Keyboard</h1>
+                    <h1 id="productName"></h1>
                     <hr>
                     <h3>★★★★☆ 60 Ratings</h3>
-                    <h2>RM89.00</h2>
+                    <h2 id="productPrice"></h2>
                     <!-- half star &#11240;  ★	&#9733;☆	&#9734;-->
                     <h5>QUANTITY</h5>
-                    <input type="number" pattern="[0-9]*" id="spinner" name="value" value="1" min="1" max="200" step="1"
-                        oninput="maxLengthCheck(this)" maxlength="3">
+                    <input type="number" pattern="[0-9]*" id="spinner" name="productQuantity" value="1" min="1"
+                        max="200" step="1" oninput="maxLengthCheck(this)" maxlength="3">
                     <br>
                     <!-- <input class="cart-btn" type="submit" value="Add to cart"> -->
                     <button class="cart-btn"><span>Add to cart </span></button>
@@ -65,6 +64,7 @@
         </div>
         <br><br>
         <hr>
+        <h3>** BELOW THIS IS ONLY A TEMPLATE **</h3>
         <h2>The K12 has included keycaps for both Windows and Mac operating systems.</h2>
         <img src="img/products/60/desc-img.jpg" alt="">
         <hr>
@@ -206,3 +206,44 @@
 </body>
 
 </html>
+
+<script>
+
+    fetch('product.json')
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            appendData(data);
+        })
+        .catch(function (err) {
+            console.log('error: ' + err);
+        });
+    function appendData(data) {
+
+        var input_url = window.location.href;
+        var url = new URL(input_url);
+        var type = url.searchParams.get("type");
+        var name = url.searchParams.get("name");
+        console.log(type);
+        console.log(name);
+
+
+        for (var i = 0; i < data.length; i++) {
+
+            if ((data[i].type == type) && (data[i].name == name)) {
+
+                var productName = document.getElementById("productName");
+                productName.innerHTML = name + " Wireless Mechanical Keyboard";
+
+                var productPrice = document.getElementById("productPrice");
+                productPrice.innerHTML = "RM" + data[i].price + ".00";
+
+                var productImage = document.getElementById("productImage");
+                productImage.src = data[i].image;
+
+            }
+        }
+    }
+
+</script>

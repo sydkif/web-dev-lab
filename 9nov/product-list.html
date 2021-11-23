@@ -18,12 +18,11 @@
         </div>
 
         <div class="header-nav">
-            <a href="product-list.html">FULL SIZED</a>
-            <a href="product-list.html">TENKEYLESS</a>
-            <a href="product-list.html">75% LAYOUT</a>
-            <a href="product-list.html">65% LAYOUT</a>
-            <a class="selected" href="product-list.html">60% LAYOUT</a>
-            <a href="product-list.html">40% LAYOUT</a>
+            <a id="full" href="product-list.html?type=full">FULL SIZED</a>
+            <a id="tkl" href="product-list.html?type=tkl">TENKEYLESS</a>
+            <a id="75" href="product-list.html?type=75">75% LAYOUT</a>
+            <a id="65" href="product-list.html?type=65">65% LAYOUT</a>
+            <a id="60" href="product-list.html?type=60">60% LAYOUT</a>
         </div>
 
         <div class="header-icon">
@@ -40,91 +39,10 @@
 
     <div class="container">
 
-        <h1>60% Keyboard Collections</h1>
+        <h1 id="h1"></h1>
         <hr>
 
-        <div class="row">
-
-            <div class="column product">
-                <a href="product-detail.html">
-                    <div class="card">
-                        <img src="img/products/60/non-backlit-blue-switch.jpg" alt="">
-                        <h3>K12 Non Backlit Blue Switch</h3>
-                        <p>RM59.00</p>
-                    </div>
-                </a>
-            </div>
-
-            <div class="column product">
-                <a href="product-detail.html">
-                    <div class="card">
-                        <img src="img/products/60/non-backlit-brown-switch.jpg" alt="">
-                        <h3>K12 Non Backlit Brown Switch</h3>
-                        <p>RM59.00</p>
-                    </div>
-                </a>
-            </div>
-
-            <div class="column product">
-                <a href="product-detail.html">
-                    <div class="card">
-                        <img src="img/products/60/non-backlit-red-switch.jpg" alt="">
-                        <h3>K12 Non Backlit Red Switch</h3>
-                        <p>RM59.00</p>
-                    </div>
-                </a>
-            </div>
-
-            <div class="column product">
-                <a href="product-detail.html">
-                    <div class="card">
-                        <img src="img/products/60/backlit-blue-switch.jpg" alt="">
-                        <h3>K12 RGB Backlit Blue Switch</h3>
-                        <p>RM89.00</p>
-                    </div>
-                </a>
-            </div>
-
-            <div class="column product">
-                <a href="product-detail.html">
-                    <div class="card">
-                        <img src="img/products/60/backlit-brown-switch.jpg" alt="">
-                        <h3>K12 RGB Backlit Brown Switch</h3>
-                        <p>RM89.00</p>
-                    </div>
-                </a>
-            </div>
-
-            <div class="column product">
-                <a href="product-detail.html">
-                    <div class="card">
-                        <img src="img/products/60/backlit-red-switch.jpg" alt="">
-                        <h3>K12 RGB Backlit Red Switch</h3>
-                        <p>RM89.00</p>
-                    </div>
-                </a>
-            </div>
-
-            <div class="column product">
-                <a href="product-detail.html">
-                    <div class="card">
-                        <img src="img/products/60/backlit-banana-optical-switch.jpg" alt="">
-                        <h3>K12 RGB Backlit Banana Optical Switch</h3>
-                        <p>RM79.00</p>
-                    </div>
-                </a>
-            </div>
-
-            <div class="column product">
-                <a href="product-detail.html">
-                    <div class="card">
-                        <img src="img/products/60/backlit-mint-optical-switch.jpg" alt="">
-                        <h3>K12 RGB Backlit Mint Optical Switch</h3>
-                        <p>RM79.00</p>
-                    </div>
-                </a>
-            </div>
-        </div>
+        <div id="myData" class="row"></div>
 
     </div>
 
@@ -135,3 +53,61 @@
 </body>
 
 </html>
+
+<script>
+    fetch('product.json')
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            appendData(data);
+        })
+        .catch(function (err) {
+            console.log('error: ' + err);
+        });
+    function appendData(data) {
+
+        var mainContainer = document.getElementById("myData");
+        var input_url = window.location.href;
+        var url = new URL(input_url);
+        var type = url.searchParams.get("type");
+        console.log(type);
+
+        var h1 = document.getElementById("h1");
+        if (type == "full")
+            h1.innerHTML = "Full-Sized Keyboard Collections";
+        if (type == "tkl")
+            h1.innerHTML = "Tenkeyless Keyboard Collections";
+        if (type == "75")
+            h1.innerHTML = "75% Keyboard Collections";
+        if (type == "65")
+            h1.innerHTML = "65% Keyboard Collections";
+        if (type == "60")
+            h1.innerHTML = "60% Keyboard Collections";
+
+        document.getElementById(type).className = "selected";
+
+
+        for (var i = 0; i < data.length; i++) {
+
+            if (data[i].type == type) {
+
+                var columnProduct = document.createElement("div");
+                columnProduct.className = "column product";
+
+                columnProduct.innerHTML =
+                    '<a href="product-detail.html?type=' +
+                    type + '&name=' + data[i].name + '">' +
+                    '<div class="card">' +
+                    '<img src="' + data[i].image + '" alt="">' +
+                    '<h3>' + data[i].name + '</h3>' +
+                    '<p>RM' + data[i].price + '.00</p>' +
+                    '</div>' +
+                    '</a>';
+
+                mainContainer.appendChild(columnProduct);
+
+            }
+        }
+    }
+</script>
