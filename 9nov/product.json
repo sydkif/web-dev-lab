@@ -1,0 +1,50 @@
+[
+    {
+        "id": "60",
+        "name": "K12 Non Backlit Blue Switch",
+        "image": "img/products/60/non-backlit-blue-switch.jpg",
+        "price": 59
+    },
+    {
+        "id": "60",
+        "name": "K12 Non Backlit Brown Switch",
+        "image": "img/products/60/non-backlit-brown-switch.jpg",
+        "price": 59
+    },
+    {
+        "id": "60",
+        "name": "K12 Non Backlit Red Switch",
+        "image": "img/products/60/non-backlit-red-switch.jpg",
+        "price": 59
+    },
+    {
+        "id": "60",
+        "name": "K12 RGB Backlit Blue Switch",
+        "image": "mg/products/60/backlit-blue-switch.jpg",
+        "price": 89
+    },
+    {
+        "id": "60",
+        "name": "K12 RGB Backlit Brown Switch",
+        "image": "img/products/60/backlit-brown-switch.jpg",
+        "price": 89
+    },
+    {
+        "id": "60",
+        "name": "K12 RGB Backlit Red Switch",
+        "image": "img/products/60/backlit-red-switch.jpg",
+        "price": 89
+    },
+    {
+        "id": "60",
+        "name": "K12 RGB Backlit Banana Optical Switch",
+        "image": "img/products/60/backlit-banana-optical-switch.jpg",
+        "price": 79
+    },
+    {
+        "id": "60",
+        "name": "K12 RGB Backlit Mint Optical Switch",
+        "image": "img/products/60/backlit-mint-optical-switch.jpg",
+        "price": 79
+    }
+]

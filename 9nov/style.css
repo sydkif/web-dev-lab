@@ -203,7 +203,6 @@ img {
     max-width : 1170px;
     margin    : auto;
     margin-top: 160px;
-
 }
 
 .sm-btn {
@@ -290,6 +289,41 @@ img {
     clear  : both;
 }
 
+.col-30 {
+    /* margin-left: 1rem; */
+    float: left;
+    width: 25%;
+}
+
+.col-70 {
+    float: left;
+    width: 70%;
+}
+
+.reg-form>.row>.col-30 {
+    margin-left: 1rem;
+}
+
+.reg-form>.row {
+    margin-top   : 1rem;
+    margin-bottom: 1rem;
+}
+
+.reg-form label {
+    font-size: 20px;
+}
+
+.reg-form input {
+    width                : 100%;
+    font-size            : 20px;
+    padding              : 10px;
+    border-radius        : 2px;
+    -webkit-border-radius: 12px;
+    -moz-boder-radius    : 2px;
+    -ms-border-radius    : 2px;
+    -o-border-radius     : 2px;
+}
+
 /* Responsive columns */
 @media screen and (max-width: 1200px) {
 
@@ -344,7 +378,8 @@ img {
 }
 
 .cart-btn,
-.buy-btn {
+.buy-btn,
+.reg-btn {
     margin-top : 12px;
     font-size  : 16px;
     font-weight: bold;
@@ -358,31 +393,42 @@ img {
     transition : 0.5s;
 }
 
+.reg-btn {
+    top                  : 0px;
+    border-radius        : 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius   : 1rem;
+    -ms-border-radius    : 1rem;
+    -o-border-radius     : 1rem;
+}
+
 .cart-btn {
     color           : black;
     background-color: white;
 }
 
 .cart-btn:after,
-.buy-btn:after {
+.buy-btn:after,
+.reg-btn:after {
     content   : '»';
     opacity   : 0;
     transition: 0.5s;
 }
 
 .cart-btn:hover,
-.buy-btn:hover {
+.buy-btn:hover,
+.reg-btn:hover {
     padding-right: 24px;
     padding-left : 8px;
 }
 
 .cart-btn:hover:after,
-.buy-btn:hover:after {
+.buy-btn:hover:after,
+.reg-btn:hover:after
+ {
     opacity: 1;
     right  : 10px;
 }
-
-
 
 .buy-btn {
     color           : white;
