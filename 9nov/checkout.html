@@ -88,15 +88,17 @@
 
                             let tr = document.createElement("tr");
                             tr.innerHTML =
-                                '<th scope="row" class="border-0"><div class="p-2">' +
-                                '<div class="ml-3 d-inline-block align-middle">' +
-                                '<h5 class="mb-0"><p class="text-dark d-inline-block align-middle">' +
-                                _items[x].name + '</p></h5></div></div></th>' +
-                                '<td class="border-0 align-middle text-center"><strong>' + _items[x].price + '.00</strong></td>' +
-                                '<td class="border-0 align-middle text-center"><strong>' +
-                                _items[x].quantity + '</strong></td>' +
-                                '<td class="border-0 align-middle text-center">' +
-                                '<strong>' + priceQuantity + '.00</strong></td>';
+                                `   <th scope="row" class="border-0"><div class="p-2">
+                                        <div class="ml-3 d-inline-block align-middle">
+                                            <h5 class="mb-0">
+                                                <p class="text-dark d-inline-block align-middle">
+                                                    ${_items[x].name}</p></h5></div></div></th>
+                                    <td class="border-0 align-middle text-center">
+                                      <strong> ${Number(_items[x].price).toFixed(2)}</strong></td>
+                                    <td class="border-0 align-middle text-center">
+                                       <strong>${_items[x].quantity} </strong></td>
+                                    <td class="border-0 align-middle text-center">
+                                      <strong>${priceQuantity.toFixed(2)}</strong></td>`;
                             _output.appendChild(tr);
                             _total += priceQuantity;
                             _quantity += parseInt(_items[x].quantity);
@@ -104,44 +106,46 @@
 
                         if (_total < 100)
                             _shipping = 10;
-
                         if ((_quantity > 5) && (_quantity < 10))
                             _discount = 5;
-
                         if (_quantity > 10)
                             _discount = 10;
 
 
                         let tr2 = document.createElement("tr");
                         tr2.innerHTML =
-                            '<td></td><td></td>' +
-                            '<td class="align-middle text-right">Subtotal (RM) : </td>' +
-                            '<td class="align-middle text-center">' +
-                            _total + '.00</td>';
+                            `   <td></td><td></td>
+                                <td class="align-middle text-right">Subtotal (RM) : </td>
+                                <td class="align-middle text-center">
+                                    ${_total.toFixed(2)}
+                                </td>`;
                         _output.appendChild(tr2);
 
                         let tr3 = document.createElement("tr");
                         tr3.innerHTML =
-                            '<td class="border-0"></td><td class="border-0"></td>' +
-                            '<td class="border-0 align-middle text-right">Shipping Total (RM) : </td>' +
-                            '<td class="border-0 align-middle text-center">' +
-                            _shipping + '.00</td>';
+                            `   <td class="border-0"></td><td class="border-0"></td>
+                                <td class="border-0 align-middle text-right">Shipping Total (RM) : </td>
+                                <td class="border-0 align-middle text-center">
+                                    ${_shipping.toFixed(2)} </td>`;
                         _output.appendChild(tr3);
 
                         let tr4 = document.createElement("tr");
                         tr4.innerHTML =
-                            '<td class="border-0"></td><td class="border-0"></td>' +
-                            '<td class="border-0 align-middle text-right">Discount : </td>' +
-                            '<td class="border-0 align-middle text-center">' +
-                            _discount + '%</td>';
+                            `   <td class="border-0"></td><td class="border-0"></td>
+                                <td class="border-0 align-middle text-right">Discount : </td>
+                                <td class="border-0 align-middle text-center">
+                                    ${_discount}%</td>`;
                         _output.appendChild(tr4);
 
                         let tr5 = document.createElement("tr");
                         tr5.innerHTML =
-                            '<td class="border-0"></td><td class="border-0"></td>' +
-                            '<td class="border-0 align-middle text-right">Total Payment : </td>' +
-                            '<td class="border-0 align-middle text-center"><strong style="font-size:24px;">RM ' +
-                            Number(((_total + _shipping) * ((100 - _discount) / 100))).toFixed(2); + '</strong></td>';
+                            `   <td class="border-0"></td>
+                                <td class="border-0"></td>
+                                <td class="border-0 align-middle text-right">Total Payment : </td>
+                                <td class="border-0 align-middle text-center"><strong style="font-size:24px;">
+                                    RM ${(((_total + _shipping) * ((100 - _discount) / 100))).toFixed(2)}
+                                    </strong>
+                                </td>`;
                         _output.appendChild(tr5);
 
                     </script>
