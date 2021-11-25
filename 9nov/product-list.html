@@ -30,7 +30,7 @@
                 <img class="icon" src="img/user.svg" alt=""></a>
             <a href="">
                 <img class="icon" src="img/search.svg" alt=""></a>
-            <a href="">
+            <a href="cart.html">
                 <img class="icon" src="img/cart.svg" alt=""></a>
         </div>
 
@@ -42,7 +42,11 @@
         <h1 id="h1"></h1>
         <hr>
 
-        <div id="myData" class="row"></div>
+        <div id="myData" class="row">
+
+
+
+        </div>
 
     </div>
 
@@ -67,13 +71,13 @@
         });
     function appendData(data) {
 
-        var mainContainer = document.getElementById("myData");
-        var input_url = window.location.href;
-        var url = new URL(input_url);
-        var type = url.searchParams.get("type");
+        let mainContainer = document.getElementById("myData");
+        let input_url = window.location.href;
+        let url = new URL(input_url);
+        let type = url.searchParams.get("type");
         console.log(type);
 
-        var h1 = document.getElementById("h1");
+        let h1 = document.getElementById("h1");
         if (type == "full")
             h1.innerHTML = "Full-Sized Keyboard Collections";
         if (type == "tkl")
@@ -88,11 +92,11 @@
         document.getElementById(type).className = "selected";
 
 
-        for (var i = 0; i < data.length; i++) {
+        for (let i = 0; i < data.length; i++) {
 
             if (data[i].type == type) {
 
-                var columnProduct = document.createElement("div");
+                let columnProduct = document.createElement("div");
                 columnProduct.className = "column product";
 
                 columnProduct.innerHTML =

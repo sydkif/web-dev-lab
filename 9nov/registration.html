@@ -29,7 +29,7 @@
                 <img class="icon" src="img/user.svg" alt="user-icon"></a>
             <a href="">
                 <img class="icon" src="img/search.svg" alt="search-icon"></a>
-            <a href="">
+            <a href="cart.html">
                 <img class="icon" src="img/cart.svg" alt="cart-icon"></a>
         </div>
     </div>
@@ -61,7 +61,7 @@
             <div class="row">
                 <div class="col-30"><label for="phone">* Telephone</label></div>
                 <div class="col-70">
-                    <input type="tel" name="phone" placeholder="+6013XXXXXXX">
+                    <input id="phone" type="tel" name="phone" placeholder="+6013XXXXXXX">
                 </div>
             </div>
             <hr>
@@ -114,50 +114,67 @@
         let _zip = document.forms["regForm"]["zip"].value;
         let _state = document.forms["regForm"]["state"].value;
 
+        // validateEmail(_email);
+
         if (_firstName == "") {
             alert("Please enter your first name.");
             return false;
-        } else if (_lastName == "") {
+        } if (_lastName == "") {
             alert("Please enter your last name.");
             return false;
-        } else if (_email == "") {
+        } if (_email == "") {
             alert("Please enter your email address.");
             return false;
-        } else if (_phone == "") {
+        } if (_phone == "") {
             alert("Please enter your phone number.");
             return false;
-        } else if (_address1 == "") {
+        } if (_address1 == "") {
             alert("Please enter your address.");
             return false;
-        } else if (_city == "") {
+        } if (_city == "") {
             alert("Please enter your city.");
             return false;
-        } else if (_zip == "") {
+        } if (_zip == "") {
             alert("Please enter your zip code.");
             return false;
-        } else if (_state == "") {
+        } if (_state == "") {
             alert("Please enter your state.");
             return false;
-        } else {
-            sessionStorage.setItem("$firstName", _firstName);
-            sessionStorage.setItem("$lastName", _lastName);
-            sessionStorage.setItem("$email", _email);
-            sessionStorage.setItem("$phone", _phone);
-            sessionStorage.setItem("$address1", _address1);
-            sessionStorage.setItem("$address2", _address2);
-            sessionStorage.setItem("$city", _city);
-            sessionStorage.setItem("$zip", _zip);
-            sessionStorage.setItem("$state", _state);
-            if (_email == "syedakif177@gmail.com") {
-                sessionStorage.setItem("$msg", "Registration Failed, email has been used.")
-                sessionStorage.setItem("$status", "fail");
-            }
-            else {
-                sessionStorage.setItem("$msg", "Thank you for registering, " + _firstName + " " + _lastName + ".")
-                sessionStorage.setItem("$status", "success");
-
-            }
         }
+
+        const phoneFormat = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+        if (!(_phone.match(phoneFormat))) {
+            alert("Invalid Phone Number");
+            return false;
+        }
+
+        const zipFormat = /^\d{5}(-\d{4})?$/;
+        if (!(_zip.match(zipFormat))) {
+            alert("Invalid Zip Code");
+            return false;
+        }
+
+        sessionStorage.setItem("$firstName", _firstName);
+        sessionStorage.setItem("$lastName", _lastName);
+        sessionStorage.setItem("$email", _email);
+        sessionStorage.setItem("$phone", _phone);
+        sessionStorage.setItem("$address1", _address1);
+        sessionStorage.setItem("$address2", _address2);
+        sessionStorage.setItem("$city", _city);
+        sessionStorage.setItem("$zip", _zip);
+        sessionStorage.setItem("$state", _state);
+        if (_email == "johndoe@gmail.com") {
+            sessionStorage.setItem("$msg", "Registration Failed, email has been used.")
+            sessionStorage.setItem("$status", "fail");
+        }
+        else {
+            sessionStorage.setItem("$msg", "Thank you for registering, " + _firstName + " " + _lastName + ".")
+            sessionStorage.setItem("$status", "success");
+
+        }
+
     }
+
+
 
 </script>

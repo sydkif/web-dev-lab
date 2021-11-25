@@ -297,10 +297,11 @@ img {
 
 .col-70 {
     float: left;
-    width: 70%;
+    width: 65%;
 }
 
-.reg-form>.row>.col-30 {
+.reg-form>.row>.col-30,
+.reg-form>.row>.col-70 {
     margin-left: 1rem;
 }
 
@@ -424,8 +425,7 @@ img {
 
 .cart-btn:hover:after,
 .buy-btn:hover:after,
-.reg-btn:hover:after
- {
+.reg-btn:hover:after {
     opacity: 1;
     right  : 10px;
 }

@@ -29,7 +29,7 @@
                 <img class="icon" src="img/user.svg" alt="user-icon"></a>
             <a href="">
                 <img class="icon" src="img/search.svg" alt="search-icon"></a>
-            <a href="">
+            <a href="cart.html">
                 <img class="icon" src="img/cart.svg" alt="cart-icon"></a>
         </div>
     </div>
@@ -64,14 +64,7 @@
                     <h3 id="phone"></h3>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-30">
-                    <h3>Fax</h3>
-                </div>
-                <div class="col-70">
-                    <h3 id="fax"></h3>
-                </div>
-            </div>
+
             <hr>
             <h2>Your Address</h2>
             <div class="row">
@@ -115,9 +108,6 @@
 
         document.getElementById("phone").innerHTML =
             sessionStorage.getItem("$phone");
-
-        document.getElementById("fax").innerHTML =
-            sessionStorage.getItem("$fax");
 
         document.getElementById("address").innerHTML =
             sessionStorage.getItem("$address1") + ", " +

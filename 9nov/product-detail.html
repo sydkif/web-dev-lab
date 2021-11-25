@@ -19,11 +19,11 @@
         </div>
 
         <div class="header-nav">
-            <a href="product-list.html?type=full">FULL SIZED</a>
-            <a href="product-list.html?type=tkl">TENKEYLESS</a>
-            <a href="product-list.html?type=75">75% LAYOUT</a>
-            <a href="product-list.html?type=65">65% LAYOUT</a>
-            <a href="product-list.html?type=60">60% LAYOUT</a>
+            <a id="full" href="product-list.html?type=full">FULL SIZED</a>
+            <a id="tkl" href="product-list.html?type=tkl">TENKEYLESS</a>
+            <a id="75" href="product-list.html?type=75">75% LAYOUT</a>
+            <a id="65" href="product-list.html?type=65">65% LAYOUT</a>
+            <a id="60" href="product-list.html?type=60">60% LAYOUT</a>
         </div>
 
         <div class="header-icon">
@@ -31,7 +31,7 @@
                 <img class="icon" src="img/user.svg" alt=""></a>
             <a href="">
                 <img class="icon" src="img/search.svg" alt=""></a>
-            <a href="">
+            <a href="cart.html">
                 <img class="icon" src="img/cart.svg" alt=""></a>
         </div>
     </div>
@@ -44,19 +44,21 @@
             </div>
 
             <div class="column">
-                <form>
+                <form name="productForm" action="cart.html" onsubmit="addToCart()">
                     <h1 id="productName"></h1>
                     <hr>
                     <h3>★★★★☆ 60 Ratings</h3>
                     <h2 id="productPrice"></h2>
                     <!-- half star &#11240;  ★	&#9733;☆	&#9734;-->
                     <h5>QUANTITY</h5>
-                    <input type="number" pattern="[0-9]*" id="spinner" name="productQuantity" value="1" min="1"
-                        max="200" step="1" oninput="maxLengthCheck(this)" maxlength="3">
+                    <input type="number" pattern="[0-9]*" id="spinner" name="quantity" value="1" min="1" max="99"
+                        step="1" oninput="maxLengthCheck(this)" maxlength="2">
                     <br>
+                    <input type="hidden" name="name" value="">
+                    <input type="hidden" name="price" value="">
                     <!-- <input class="cart-btn" type="submit" value="Add to cart"> -->
-                    <button class="cart-btn"><span>Add to cart </span></button>
-                    <button class="buy-btn"><span>Buy it now </span></button>
+                    <button type="button" class="cart-btn" onclick="addToCart()"><span>Add to cart </span></button>
+                    <button type="submit" class="buy-btn"><span>Buy it now </span></button>
                     <br>
                     <!-- <input class="buy-btn" type="submit" value="Buy it now"> -->
                 </form>
@@ -93,11 +95,11 @@
                     Backlit: Adjustable 4-level RGB backlit (Exclude Non-Backlit version)<br><br>
                     System: Windows/Android/Mac/iOS<br><br>
                     Battery: 4000mAh Rechargeable li-polymer battery<br><br>
-                    BT Working Time (Non-Backlit version): Up to 570 hours (Lab test result may vary by actual
+                    BT Working Time (Non-Backlit version): Up to 570 hours (Lab test result may lety by actual
                     use)<br><br>
-                    BT Working Time (Backlit off): Up to 240 hours (Lab test result may vary by actual use)<br><br>
-                    BT Working Time (White backlit): Up to 68 hours (Lab test result may vary by actual use)<br><br>
-                    BT Working Time (RGB backlit): Up to 72 hours (Lab test result may vary by actual use)<br><br>
+                    BT Working Time (Backlit off): Up to 240 hours (Lab test result may lety by actual use)<br><br>
+                    BT Working Time (White backlit): Up to 68 hours (Lab test result may lety by actual use)<br><br>
+                    BT Working Time (RGB backlit): Up to 72 hours (Lab test result may lety by actual use)<br><br>
                     Connection: Bluetooth and Type-C cable<br><br>
                     Bluetooth version: 5.1<br><br>
                     Bluetooth Device Name: Keychron K12<br><br>
@@ -221,29 +223,51 @@
         });
     function appendData(data) {
 
-        var input_url = window.location.href;
-        var url = new URL(input_url);
-        var type = url.searchParams.get("type");
-        var name = url.searchParams.get("name");
-        console.log(type);
+        let input_url = window.location.href;
+        let url = new URL(input_url);
+        let name = url.searchParams.get("name");
+
         console.log(name);
 
 
-        for (var i = 0; i < data.length; i++) {
+        for (let i = 0; i < data.length; i++) {
 
-            if ((data[i].type == type) && (data[i].name == name)) {
+            if (data[i].name == name) {
 
-                var productName = document.getElementById("productName");
-                productName.innerHTML = name + " Wireless Mechanical Keyboard";
+                document.getElementById("productName").innerHTML = name + " Wireless Mechanical Keyboard";
+                document.getElementById("productPrice").innerHTML = "RM" + data[i].price + ".00";
+                document.getElementById("productImage").src = data[i].image;
 
-                var productPrice = document.getElementById("productPrice");
-                productPrice.innerHTML = "RM" + data[i].price + ".00";
-
-                var productImage = document.getElementById("productImage");
-                productImage.src = data[i].image;
+                document.forms["productForm"]["name"].value = data[i].name;
+                document.forms["productForm"]["price"].value = data[i].price;
 
             }
         }
     }
+
+
+    function addToCart() {
+
+        // Parse any JSON previously stored in allProducts
+        let existingProducts = JSON.parse(localStorage.getItem("allProducts"));
+        if (existingProducts == null) existingProducts = [];
+        let _name = document.forms["productForm"]["name"].value;
+        let _price = document.forms["productForm"]["price"].value;
+        let _quantity = document.forms["productForm"]["quantity"].value;
+
+        let product = {
+            "name": _name,
+            "price": _price,
+            "quantity": _quantity
+        };
+        localStorage.setItem("product", JSON.stringify(product));
+        // Save allProducts back to local storage
+        existingProducts.push(product);
+        localStorage.setItem("allProducts", JSON.stringify(existingProducts));
+
+        alert("Product added successfully!");
+
+    }
+
 
 </script>

@@ -44,3 +44,5 @@ function maxLengthCheck(object) {
 }
 
 window.onload = spinner;
+
+

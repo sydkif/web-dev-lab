@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <p id="p"></p>
+
+    <h2 id="output"></h2>
+
+</body>
+
+</html>
+
+<script>
+
+    _productList = localStorage.getItem('allProducts');
+
+    let _output = document.getElementById("output");
+
+
+    let test = document.getElementById('p');
+    test.innerHTML = _productList;
+
+    for (let x = 0; x < _productList.length; x++) {
+
+        let item = document.createElement("div");
+        item.innerHTML = _productList[x].name;
+
+        _output.appendChild(item);
+
+
+    }
+
+
+
+
+
+    // localStorage.clear();
+</script>
