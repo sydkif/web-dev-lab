@@ -37,7 +37,7 @@
         <div class="header-icon">
             <a href="registration.html">
                 <img class="icon" src="img/user.svg" alt=""></a>
-            <a href="">
+            <a href="test.html">
                 <img class="icon" src="img/search.svg" alt=""></a>
             <a href="cart.html">
                 <img class="icon" src="img/cart.svg" alt=""></a>
@@ -69,24 +69,22 @@
                     <script>
 
                         let _items = JSON.parse(localStorage.getItem('allProducts'));
-
                         let _output = document.getElementById("output");
-
 
                         for (let x = 0; x < _items.length; x++) {
 
                             let tr = document.createElement("tr");
                             tr.innerHTML =
-                                '<th scope="row" class="border-0"><div class="p-2">' +
-                                '<div class="ml-3 d-inline-block align-middle">' +
-                                '<h5 class="mb-0"><a href="product-detail.html?name=' + _items[x].name + '" class="text-dark d-inline-block align-middle">' +
-                                _items[x].name + '</a></h5></div></div></th>' +
-                                '<td class="border-0 align-middle text-center"><strong>' + _items[x].price + '.00</strong></td>' +
-                                '<td class="border-0 align-middle text-center"><input type="number" name="quantity"' +
-                                ' value="' + _items[x].quantity + '" min="1" max="99"></td>' +
-                                '<td class="border-0 align-middle text-center">' +
-                                '<button type="button" class="text-dark" style="border:none" onclick="removeItem()">' +
-                                '<i class="fa fa-trash" style="font-size: 24px;"></i></button></td>';
+                                `   <th scope="row" class="border-0"><div class="p-2">
+                                    <div class="ml-3 d-inline-block align-middle"><h5 class="mb-0">
+                                        <a href="product-detail.html?name=${_items[x].name}" class="text-dark d-inline-block align-middle">
+                                            ${_items[x].name}</a></h5></div></div></th>
+                                    <td class="border-0 align-middle text-center"><strong>${Number(_items[x].price).toFixed(2)}</strong></td>
+                                    <td class="border-0 align-middle text-center"><input type="number" name="quantity"
+                                        value="${_items[x].quantity}" min="1" max="99"></td>
+                                    <td class="border-0 align-middle text-center">
+                                        <button type="button" class="text-dark" style="border:none" onclick="removeItem()">
+                                    <i class="fa fa-trash" style="font-size: 24px;"></i></button></td>`;
                             _output.appendChild(tr);
                         }
 
@@ -99,9 +97,6 @@
                             <a class="btn btn-dark btn-block" href="checkout.html">Checkout</a>
                         </td>
                     </tr>
-
-
-
                 </tbody>
             </table>
         </div>
@@ -121,7 +116,7 @@
 
     function removeItem() {
 
-        alert("deleted");
+        alert("Delete Success");
         localStorage.clear();
         location.reload();
 

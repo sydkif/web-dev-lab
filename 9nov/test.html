@@ -13,14 +13,15 @@
     <p id="p"></p>
 
     <h2 id="output"></h2>
-
+<button onclick="localStorage.clear();" >DELETE ALL</button>
 </body>
 
 </html>
 
 <script>
 
-    _productList = localStorage.getItem('allProducts');
+    // _productList = localStorage.getItem('allProducts');
+    _productList = JSON.parse(localStorage.getItem('allProducts'));
 
     let _output = document.getElementById("output");
 

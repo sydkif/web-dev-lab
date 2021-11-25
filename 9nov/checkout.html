@@ -81,7 +81,6 @@
                         let _shipping = 0;
                         let _discount = 0;
 
-
                         for (let x = 0; x < _items.length; x++) {
 
                             let priceQuantity = _items[x].price * _items[x].quantity;
@@ -94,9 +93,9 @@
                                                 <p class="text-dark d-inline-block align-middle">
                                                     ${_items[x].name}</p></h5></div></div></th>
                                     <td class="border-0 align-middle text-center">
-                                      <strong> ${Number(_items[x].price).toFixed(2)}</strong></td>
+                                      <strong>${Number(_items[x].price).toFixed(2)}</strong></td>
                                     <td class="border-0 align-middle text-center">
-                                       <strong>${_items[x].quantity} </strong></td>
+                                       <strong>${_items[x].quantity}</strong></td>
                                     <td class="border-0 align-middle text-center">
                                       <strong>${priceQuantity.toFixed(2)}</strong></td>`;
                             _output.appendChild(tr);
@@ -106,10 +105,12 @@
 
                         if (_total < 100)
                             _shipping = 10;
-                        if ((_quantity > 5) && (_quantity < 10))
+
+                        if ((_quantity >= 5) && (_quantity <= 10))
                             _discount = 5;
+
                         if (_quantity > 10)
-                            _discount = 10;
+                            _discount = 15;
 
 
                         let tr2 = document.createElement("tr");
@@ -117,8 +118,7 @@
                             `   <td></td><td></td>
                                 <td class="align-middle text-right">Subtotal (RM) : </td>
                                 <td class="align-middle text-center">
-                                    ${_total.toFixed(2)}
-                                </td>`;
+                                    ${_total.toFixed(2)}</td>`;
                         _output.appendChild(tr2);
 
                         let tr3 = document.createElement("tr");
@@ -139,13 +139,10 @@
 
                         let tr5 = document.createElement("tr");
                         tr5.innerHTML =
-                            `   <td class="border-0"></td>
-                                <td class="border-0"></td>
+                            `   <td class="border-0"></td><td class="border-0"></td>
                                 <td class="border-0 align-middle text-right">Total Payment : </td>
                                 <td class="border-0 align-middle text-center"><strong style="font-size:24px;">
-                                    RM ${(((_total + _shipping) * ((100 - _discount) / 100))).toFixed(2)}
-                                    </strong>
-                                </td>`;
+                                    RM ${(((_total + _shipping) * ((100 - _discount) / 100))).toFixed(2)}</strong></td>`;
                         _output.appendChild(tr5);
 
                     </script>
@@ -163,15 +160,3 @@
 </body>
 
 </html>
-
-<script>
-
-    function removeItem() {
-
-        alert("deleted");
-        localStorage.clear();
-        location.reload();
-
-    }
-
-</script>
